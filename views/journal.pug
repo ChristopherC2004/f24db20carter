@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  // Define the results array with correct indentation (unbuffered JS in Pug)
+  -const results = [{ price: 14.99, cover_material: "Leather", page_count: 200 },{ price: 9.99, cover_material: "Hardcover", page_count: 120 },{ price: 19.99, cover_material: "Softcover", page_count: 150 }]
+
+  div.container-fluid
+    div.row
+      each result, index in results
+        div.col-sm-2
+          p Price: $#{result.price}
+          p Cover Material: #{result.cover_material}
+          p Page Count: #{result.page_count}

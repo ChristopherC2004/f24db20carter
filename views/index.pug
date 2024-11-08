@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to a server by Christopher Carter
+  
+  button(type="button", class="btn btn-primary" onclick='boost()') sample button
+  div(id="boost") add in extra
+
+  script.
+        let value = 0;
+        let amt = 3;
+        function boost() {
+          amt += 1;
+          value += amt;
+          document.getElementById("boost").textContent = `Boosted ${value} by ${amt}.`;
+        }
+
+  a(href="/journal") Go to Journal
