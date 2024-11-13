@@ -33,8 +33,24 @@ exports.journal_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Journal detail: ' + req.params.id);
 };
 // Handle Journal create on POST.
-exports.journal_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: Journal create POST');
+exports.journal_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Journal();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"coverMaterial":"Leather", "cost":12.99, "pages":240}
+    document.coverMaterial = req.body.coverMaterial;
+    document.cost = req.body.cost;
+    document.pages = req.body.pages;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
 // Handle Journal delete from on DELETE.
 exports.journal_delete = function(req, res) {
