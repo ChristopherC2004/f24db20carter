@@ -21,8 +21,8 @@ var Journal = require("./models/journal");
 async function recreateDB(){
   await Journal.deleteMany();
   let instance1 = new
-  Journal({coverMaterial:"leather", pages:200,
-  cost:14.99});
+  Journal({coverMaterial:"Hardcover", pages:120,
+  cost:9.99});
   instance1.save().then(doc=>{
     console.log("First object saved")}
   ).catch(err=>{
