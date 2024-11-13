@@ -1,7 +1,14 @@
 var Journal = require('../models/journal');
 // List of all Journals
-exports.journal_list = function(req, res) {
-res.send('NOT IMPLEMENTED: Journal list');
+exports.journal_list = async function(req, res) {
+    try{
+        theJournals = await Journal.find();
+        res.send(theJournals);
+        }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+        }
 };
 // for a specific Journal.
 exports.journal_detail = function(req, res) {
