@@ -123,3 +123,17 @@ exports.journal_create_Page = function(req, res) {
     }
 };
     
+// Handle building the view for updating a journal.
+// query provides the id
+exports.journal_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await Journal.findById(req.query.id)
+    res.render('journalupdate', { title: 'Journal Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    

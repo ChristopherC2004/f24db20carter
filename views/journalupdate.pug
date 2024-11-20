@@ -1,0 +1,39 @@
+extends layout
+block content
+  h1= title
+  - let journalid = toShow._id
+  - let journalmaterial = toShow.coverMaterial
+  - let journalcost = toShow.cost
+  - let journalpages = toShow.pages
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{journalid}
+  - let actionid = "/resource/journals/" + journalid
+  form(id='JournalForm', action= actionid, method="PUT")
+    div.form-group
+      label.journalAttr(for='journalmaterial') Journal Cover Material
+      input#journal_type(type='text', name='Cover Material', value= journalmaterial )
+    div.form-group
+      label.journalAttr(for='pages') Journal Page Count
+      input#size(type='number', name='Page Count', value= journalpages )
+    div.form-group
+      label.journalAttr(for='cost') Journal cost
+      input#cost(type='number', name='Cost', value= journalcost )
+    input(type="submit")
+  script.
+    document.forms['JournalForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
