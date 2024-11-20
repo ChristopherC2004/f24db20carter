@@ -4,22 +4,23 @@ block content
   - let journalid = toShow._id
   - let journalmaterial = toShow.coverMaterial
   - let journalcost = toShow.cost
-  - let journalpages = toShow.pages
+  - let journalpage = toShow.pages
   div.row(class='mb-2')
     div.mr-1 ID is
     div #{journalid}
   - let actionid = "/resource/journals/" + journalid
   form(id='JournalForm', action= actionid, method="PUT")
     div.form-group
-      label.journalAttr(for='journalmaterial') Journal Cover Material
-      input#journal_type(type='text', name='Cover Material', value= journalmaterial )
+      label.journalAttr(for='coverMaterial') Journal Cover Material
+      input#journalmaterial(type='text', name='coverMaterial', value= journalmaterial )
     div.form-group
-      label.journalAttr(for='pages') Journal Page Count
-      input#size(type='number', name='Page Count', value= journalpages )
+      label.journalAttr(for='pages') Journal pages
+      input#pages(type='number', name='pages', value= journalpage)
     div.form-group
       label.journalAttr(for='cost') Journal cost
-      input#cost(type='number', name='Cost', value= journalcost )
+      input#cost(type='number', name='cost', value= journalcost )
     input(type="submit")
+
   script.
     document.forms['JournalForm'].addEventListener('submit', (event) => {
       event.preventDefault();

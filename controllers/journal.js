@@ -84,7 +84,7 @@ exports.journal_update_put = async function(req, res) {
         if(req.body.coverMaterial)
             toUpdate.coverMaterial = req.body.coverMaterial;
         if(req.body.cost) toUpdate.cost = req.body.cost;
-        if(req.body.size) toUpdate.pages = req.body.pages;
+        if(req.body.pages) toUpdate.pages = req.body.pages;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
@@ -126,7 +126,7 @@ exports.journal_create_Page = function(req, res) {
 // Handle building the view for updating a journal.
 // query provides the id
 exports.journal_update_Page = async function(req, res) {
-    console.log("update view for item "+req.query.id)
+    console.log("update view for item "+ req.query.id)
     try{
     let result = await Journal.findById(req.query.id)
     res.render('journalupdate', { title: 'Journal Update', toShow: result });
