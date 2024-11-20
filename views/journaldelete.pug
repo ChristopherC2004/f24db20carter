@@ -1,0 +1,49 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let journalid = toShow._id
+    - let journalmaterial = toShow.coverMaterial
+    - let journalcost = toShow.cost
+    - let journalpage = toShow.pages
+    - let actionid = "/resource/journals/" + journalid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='journalAttr mr-3') Journal ID is:
+        div #{journalid}
+      div.row
+        div(class='journalAttr mr-3') Journal Cover is:
+        div #{journalmaterial}
+      div.row
+        div(class='journalAttr mr-3') Page Count is:
+        div #{journalpage}
+      div.row
+        div(class='journalAttr mr-3') Journal Cost is:
+        div #{journalcost}
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+      function cancel() {
+        // Go back to the home page for the journal collection
+        window.location.href='/journals'
+      }
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeded")
+          window.location.href='/journals'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }

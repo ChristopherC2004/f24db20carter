@@ -14,5 +14,7 @@ router.get('/create', journal_controller.journal_create_Page);
 /* GET create update page */
 router.get('/update', journal_controller.journal_update_Page);
 
+/* GET delete journal page */
+router.get('/delete', journal_controller.journal_delete_Page);
 
 module.exports = router;
