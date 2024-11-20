@@ -20,5 +20,7 @@ router.put('/journals/:id', journal_controller.journal_update_put);
 router.get('/journals/:id', journal_controller.journal_detail);
 // GET request for list of all Journal items.
 router.get('/journals', journal_controller.journal_list);
+
+
 module.exports = router;
 

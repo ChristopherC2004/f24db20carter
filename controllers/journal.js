@@ -72,7 +72,7 @@ exports.journal_delete = async function(req, res) {
     res.status(500)
     res.send(`{"error": Error deleting ${err}}`);
     }
-    };
+};
     
 // Handle Journal update form on PUT.
 exports.journal_update_put = async function(req, res) {
@@ -93,4 +93,18 @@ exports.journal_update_put = async function(req, res) {
         res.send(`{"error": ${err}: Update for id ${req.params.id}
         failed`);
     }
+};
+
+// Handle a show one view with id specified by query
+exports.journal_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+result = await Journal.findById( req.query.id)
+res.render('journaldetail',
+{ title: 'Jounal Detail', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
 };
