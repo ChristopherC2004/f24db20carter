@@ -3,14 +3,22 @@ extends layout
 block content
   h1= title
 
+  -let creation = `dispatch(\"/journal/create\")`
+
+  button.btn(class="btn-primary ml-1", onclick= creation) Create Journal
+
   -let items = results 
 
   div(class="container-fluid")
     div(class="row m-1")
       each item in items
-        - let destination = `dispatch(\"/journal/update?id=${item._id}\")`
+        - let details = `dispatch(\"/journal/detail?id=${item._id}\")`
+        - let update = `dispatch(\"/journal/update?id=${item._id}\")`
+        - let deletion = `dispatch(\"/journal/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.coverMaterial}(#{item.pages}) is #{item.cost}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-light ml-1", onclick= details,) Details
+          button.btn( class="btn-light ml-1", onclick= update,) Update
+          button.btn( class="btn-danger ml-1", onclick= deletion,) Delete
   script.
     function dispatch(path){
       window.location.href=path
