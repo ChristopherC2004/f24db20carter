@@ -17,12 +17,12 @@ router.get('/', journal_controller.journal_view_all_Page);
 router.get('/detail', journal_controller.journal_view_one_Page);
 
 /* GET create journal page */
-router.get('/create', journal_controller.journal_create_Page);
+router.get('/create',secured, journal_controller.journal_create_Page);
 
 /* GET create update page */
 router.get('/update',secured, journal_controller.journal_update_Page);
 
 /* GET delete journal page */
-router.get('/delete', journal_controller.journal_delete_Page);
+router.get('/delete',secured, journal_controller.journal_delete_Page);
 
 module.exports = router;

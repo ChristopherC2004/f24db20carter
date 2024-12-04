@@ -3,10 +3,10 @@ block content
   h1= title
   form(id='JournalForm', action="/resource/journals", method="POST")
     div.form-group
-      label.journalAttr(for='journal_cover') Journal type
+      label.journalAttr(for='journal_cover') Journal Cover Material (must be Leather, Hardcover, or Softcover)
       input#journal_cover(type='text', name='journal_cover')
     div.form-group
-       label.journalAttr(for='pages') Journal pages
+       label.journalAttr(for='pages') Journal pages (must be between 30 and 1000)
        input#pages(type='number', name='pages')
     div.form-group
        label.journalAttr(for='cost') Journal cost

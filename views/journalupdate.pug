@@ -11,10 +11,10 @@ block content
   - let actionid = "/resource/journals/" + journalid
   form(id='JournalForm', action= actionid, method="PUT")
     div.form-group
-      label.journalAttr(for='coverMaterial') Journal Cover Material
+      label.journalAttr(for='coverMaterial') Journal Cover Material (must be Leather, Hardcover, or Softcover)
       input#journalmaterial(type='text', name='coverMaterial', value= journalmaterial )
     div.form-group
-      label.journalAttr(for='pages') Journal pages
+      label.journalAttr(for='pages') Journal pages (must be between 30 and 1000)
       input#pages(type='number', name='pages', value= journalpage)
     div.form-group
       label.journalAttr(for='cost') Journal cost
