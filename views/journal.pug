@@ -5,13 +5,13 @@ block content
 
   -let items = results 
 
-  div.container-fluid
-    div.row
-      // Only loop if there are items to display
-      if items && items.length
-        each item in items
-          div.col-sm-2
-            p Price: $#{item.cost}
-            p Cover Material: #{item.coverMaterial}
-            p Pages #{item.pages}
-
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch(\"/journal/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.coverMaterial}(#{item.pages}) is #{item.cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
